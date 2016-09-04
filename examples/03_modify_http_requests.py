@@ -1,4 +1,4 @@
-from main import Request
+from http_request import Request
 
 if __name__ == '__main__':
     request = Request()

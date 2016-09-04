@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='http_request',
     version='1.0',
-    packages=[''],
+    packages=['http_request'],
     url='https://github.com/dennisfischer/http_request',
     license='MIT',
     author='Dennis Fischer',
