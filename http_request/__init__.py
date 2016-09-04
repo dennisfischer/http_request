@@ -11,6 +11,8 @@ HEADERS_BODY_PATTERN = re.compile('\\r\\n')
 HEADER_VALUE_PATTERN = re.compile(':')
 COOKIE_SEPARATOR_PATTERN = re.compile(';')
 
+VALID_METHODS = ['GET', 'POST', 'OPTIONS', 'HEAD', 'PUT', 'DELETE', 'TRACE', 'CONNECT']
+
 
 class Request:
     def __init__(self):
@@ -26,6 +28,10 @@ class Request:
             raw_headers, self.body = RAW_VALUE_PATTERN.split(raw_request)
             splitted_headers = HEADERS_BODY_PATTERN.split(raw_headers)
             self.method, self.path, self.version = REQUEST_LINE_PATTERN.split(splitted_headers[0])
+
+            if self.method not in VALID_METHODS:
+                return False
+
             self.raw_headers = splitted_headers[1:]
 
             self.headers = {header: value.strip() for header, value in
